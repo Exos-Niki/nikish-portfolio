@@ -1,0 +1,19 @@
+{
+  "name": "nikish-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "NIKISH M portfolio with a contact form, admin inbox and Postgres storage",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "engines": { "node": ">=18" },
+  "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.13.1"
+  }
+}

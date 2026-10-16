@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0b0713">
+<title>Admin · NIKISH M</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b0713;--card:#150e24;--line:#2a1f45;--tx:#ece7f7;--mut:#a396c4;--pu:#a855f7;--pu2:#7c3aed;--ok:#86e3ae;--err:#fda4af;--ease:cubic-bezier(.2,.7,.2,1);
+--disp:"Syne","Manrope",system-ui,sans-serif;--body:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;--mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:light){:root{--bg:#fbfaff;--card:#fff;--line:#e3dbf1;--tx:#15101f;--mut:#5d5473;--pu:#7c3aed;--pu2:#6d28d9;--ok:#15803d;--err:#be123c}}
+*{box-sizing:border-box;margin:0}
+body{min-height:100vh;background:var(--bg);color:var(--tx);font-family:var(--body);line-height:1.6;-webkit-font-smoothing:antialiased;
+background-image:radial-gradient(600px 400px at 85% -5%,#7c3aed33,transparent),radial-gradient(500px 400px at 0% 50%,#a855f71a,transparent)}
+:focus-visible{outline:2px solid var(--pu);outline-offset:3px;border-radius:8px}
+[hidden]{display:none!important}
+button{font:inherit;color:inherit}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border:0;border-radius:999px;font:700 .88rem var(--disp);letter-spacing:.02em;cursor:pointer;color:#fff;text-decoration:none;
+background:linear-gradient(90deg,var(--pu2),var(--pu));box-shadow:0 6px 22px #7c3aed44;transition:transform .3s var(--ease),box-shadow .3s}
+.btn:hover{box-shadow:0 10px 30px #a855f777}
+.btn:active{transform:scale(.96)}
+.btn:disabled{opacity:.6;cursor:progress}
+.btn.ghost{background:transparent;color:var(--tx);box-shadow:inset 0 0 0 1px var(--line)}
+.btn.ghost:hover{box-shadow:inset 0 0 0 1px var(--pu);background:#a855f714}
+.btn.danger:hover{box-shadow:inset 0 0 0 1px var(--err);color:var(--err);background:transparent}
+.btn.sm{padding:6px 14px;font-size:.8rem}
+
+/* login */
+#login{min-height:100vh;display:grid;place-items:center;padding:24px}
+.lbox{width:min(400px,100%);padding:30px;border:1px solid var(--line);border-radius:20px;background:var(--card);box-shadow:0 20px 60px #00000040}
+.brand{font:800 1.1rem var(--disp);letter-spacing:.12em;color:var(--pu);display:flex;align-items:center;gap:9px}
+.brand::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--pu);box-shadow:0 0 10px 2px #a855f7aa}
+.lbox h1{font:700 1.8rem/1.1 var(--disp);letter-spacing:-.03em;margin:18px 0 6px}
+.lbox p{color:var(--mut);font-size:.95rem;margin-bottom:20px}
+.lbox input{width:100%;padding:13px 15px;border-radius:12px;border:1px solid var(--line);background:transparent;color:var(--tx);font:inherit;transition:border-color .3s,box-shadow .3s}
+.lbox input:focus{outline:0;border-color:var(--pu);box-shadow:0 0 0 4px #a855f722}
+.lbox .btn{width:100%;justify-content:center;margin-top:14px;padding:13px}
+.msgline{min-height:1.4em;margin-top:12px;font-size:.9rem;color:var(--err)}
+#gbtn{display:flex;justify-content:center;min-height:44px}
+.or{display:flex;align-items:center;gap:12px;margin:18px 0;color:var(--mut);font-size:.8rem}
+.or::before,.or::after{content:"";flex:1;height:1px;background:var(--line)}
+
+/* app shell */
+#app{max-width:920px;margin:0 auto;padding:28px 5vw 60px}
+.top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px}
+.top h1{font:800 clamp(1.8rem,5vw,2.4rem)/1 var(--disp);letter-spacing:-.035em}
+.acts{display:flex;flex-wrap:wrap;gap:8px}
+.pill{display:inline-grid;place-items:center;min-width:24px;height:24px;padding:0 8px;margin-left:8px;border-radius:999px;font:500 .75rem var(--mono);background:linear-gradient(135deg,var(--pu2),var(--pu));color:#fff;box-shadow:0 0 14px #a855f788;vertical-align:middle}
+.pill.zero{background:var(--line);color:var(--mut);box-shadow:none}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;margin:22px 0 16px;padding:4px;width:max-content;max-width:100%;border-radius:999px;border:1px solid var(--line);background:var(--card)}
+.tabs button{padding:7px 18px;border:0;border-radius:999px;background:none;color:var(--mut);font:600 .85rem var(--body);cursor:pointer;transition:background .3s,color .3s}
+.tabs button.on{background:linear-gradient(135deg,var(--pu2),var(--pu));color:#fff}
+.meta{font:400 .75rem var(--mono);color:var(--mut);margin-bottom:14px}
+
+/* messages */
+#list{display:grid;gap:12px}
+.msg{position:relative;padding:18px 20px 16px 24px;border:1px solid var(--line);border-radius:16px;background:var(--card);transition:border-color .3s,box-shadow .3s}
+.msg:hover{border-color:#a855f766}
+.msg.unread{border-color:#a855f755;box-shadow:0 8px 30px #7c3aed22}
+.msg.unread::before{content:"";position:absolute;left:10px;top:24px;width:8px;height:8px;border-radius:50%;background:var(--pu);box-shadow:0 0 10px 2px var(--pu)}
+.msg.fresh{animation:fresh 1.6s var(--ease)}
+@keyframes fresh{0%{transform:translateY(-14px) scale(.98);opacity:0}30%{opacity:1}100%{transform:none}}
+.mh{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 14px}
+.mh b{font:700 1.05rem var(--disp);letter-spacing:-.01em}
+.mh time{font:400 .74rem var(--mono);color:var(--mut)}
+.em{display:inline-block;margin-top:2px;color:var(--pu);font-size:.88rem;text-decoration:none;word-break:break-all}
+.em:hover{text-decoration:underline}
+.mb{margin:10px 0 14px;white-space:pre-wrap;word-wrap:break-word;opacity:.92}
+.mx{display:flex;flex-wrap:wrap;gap:8px}
+.empty{padding:50px 20px;text-align:center;color:var(--mut);border:1px dashed var(--line);border-radius:16px}
+
+/* analytics */
+.range{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px}
+.range button{padding:6px 14px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--mut);font:600 .8rem var(--body);cursor:pointer;transition:border-color .3s,color .3s}
+.range button.on{border-color:var(--pu);color:var(--tx);box-shadow:0 0 0 3px #a855f722}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px}
+.stat{padding:16px 18px;border:1px solid var(--line);border-radius:16px;background:var(--card)}
+.stat small{display:block;font:400 .7rem var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
+.stat b{display:block;font:800 2rem/1.15 var(--disp);letter-spacing:-.03em;margin-top:4px;background:linear-gradient(90deg,var(--tx),var(--pu));-webkit-background-clip:text;background-clip:text;color:transparent}
+.panel{padding:18px 20px;border:1px solid var(--line);border-radius:16px;background:var(--card);margin-bottom:14px;min-width:0}
+.panel h2{font:700 1rem var(--disp);letter-spacing:-.01em;margin-bottom:4px}
+.panel .sub{font-size:.8rem;color:var(--mut);margin-bottom:14px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.chart{display:flex;align-items:flex-end;gap:3px;height:130px;padding-top:6px}
+.chart i{flex:1;min-width:2px;border-radius:4px 4px 0 0;background:linear-gradient(180deg,var(--pu),var(--pu2));opacity:.9;transition:opacity .2s;position:relative}
+.chart i:hover{opacity:1;filter:brightness(1.2)}
+.chart i.z{background:var(--line);height:3px!important}
+.axis{display:flex;justify-content:space-between;margin-top:6px;font:400 .7rem var(--mono);color:var(--mut)}
+.row{display:grid;grid-template-columns:130px 1fr auto;align-items:center;gap:12px;padding:6px 0;font-size:.9rem}
+.row .bar{height:10px;border-radius:99px;background:var(--line);overflow:hidden}
+.row .bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--pu2),var(--pu));transition:width .8s var(--ease)}
+.row span.n{font:400 .76rem var(--mono);color:var(--mut);white-space:nowrap}
+.lst{display:grid;gap:2px}
+.lst div{display:flex;justify-content:space-between;gap:10px;padding:5px 0;font-size:.88rem;border-bottom:1px solid var(--line)}
+.lst div:last-child{border:0}
+.lst span:last-child{font-family:var(--mono);color:var(--mut)}
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.86rem;min-width:560px}
+th{font:400 .68rem var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--mut);text-align:left;padding:6px 10px 8px 0;border-bottom:1px solid var(--line)}
+td{padding:9px 10px 9px 0;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border:0}
+td.id{font-family:var(--mono);color:var(--pu)}
+.tag{display:inline-block;margin:0 4px 4px 0;padding:1px 9px;border-radius:99px;border:1px solid var(--line);font-size:.72rem;color:var(--mut)}
+.tag.c{border-color:var(--pu);color:var(--pu)}
+.note{font-size:.78rem;color:var(--mut);margin-top:6px}
+
+.toast{position:fixed;left:50%;bottom:calc(22px + env(safe-area-inset-bottom,0px));translate:-50% 30px;opacity:0;z-index:10;padding:12px 20px;border-radius:999px;border:1px solid var(--pu);background:var(--card);color:var(--tx);font-size:.9rem;box-shadow:0 14px 40px #7c3aed55;transition:opacity .4s,translate .5s var(--ease);pointer-events:none;max-width:calc(100% - 32px)}
+.toast.on{opacity:1;translate:-50% 0}
+@media(max-width:720px){.grid4{grid-template-columns:1fr 1fr}.grid3{grid-template-columns:1fr}.row{grid-template-columns:100px 1fr auto}}
+@media(prefers-reduced-motion:reduce){.msg.fresh{animation:none}*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<main id="login" hidden>
+  <div class="lbox">
+    <div class="brand">NIKISH M</div>
+    <h1>Admin portal</h1>
+    <p>Sign in to see your messages and visitor stats.</p>
+    <div id="gwrap" hidden>
+      <div id="gbtn"></div>
+    </div>
+    <div class="or" id="or" hidden>or</div>
+    <form id="lf" hidden>
+      <input id="pw" type="password" placeholder="Admin password" autocomplete="current-password" aria-label="Admin password">
+      <button class="btn" id="lbtn" type="submit">Log in</button>
+    </form>
+    <div class="msgline" id="lerr" role="alert"></div>
+  </div>
+</main>
+
+<main id="app" hidden>
+  <div class="top">
+    <h1>Admin</h1>
+    <div class="acts">
+      <button class="btn ghost sm" id="alerts" type="button">Enable alerts</button>
+      <button class="btn ghost sm" id="readall" type="button">Mark all read</button>
+      <button class="btn ghost sm" id="refresh" type="button">Refresh</button>
+      <button class="btn ghost sm" id="logout" type="button">Log out</button>
+    </div>
+  </div>
+
+  <div class="tabs" id="nav" role="tablist">
+    <button class="on" data-v="msgs" role="tab" type="button">Messages<span class="pill zero" id="pill" title="Unread messages">0</span></button>
+    <button data-v="stats" role="tab" type="button">Analytics</button>
+  </div>
+
+  <section id="vMsgs">
+    <div class="tabs" id="ftabs" role="tablist">
+      <button class="on" data-f="all" role="tab" type="button">All</button>
+      <button data-f="unread" role="tab" type="button">Unread</button>
+    </div>
+    <div class="meta" id="meta" aria-live="polite"></div>
+    <div id="list"></div>
+  </section>
+
+  <section id="vStats" hidden>
+    <div class="range" id="range">
+      <button data-d="1" type="button">Today</button>
+      <button class="on" data-d="7" type="button">7 days</button>
+      <button data-d="30" type="button">30 days</button>
+      <button data-d="90" type="button">90 days</button>
+      <button data-d="0" type="button">All time</button>
+    </div>
+    <div class="grid4" id="cards"></div>
+    <div class="panel"><h2>Page views per day</h2><div class="sub">Every time someone opens your portfolio</div><div class="chart" id="chart"></div><div class="axis" id="axis"></div></div>
+    <div class="panel"><h2>Sections visited</h2><div class="sub">How many visitors scrolled to each section</div><div id="secs"></div></div>
+    <div class="grid3">
+      <div class="panel"><h2>Link clicks</h2><div class="sub">What people tapped</div><div class="lst" id="clicks"></div></div>
+      <div class="panel"><h2>Devices</h2><div class="sub">By page view</div><div class="lst" id="devs"></div></div>
+      <div class="panel"><h2>Countries</h2><div class="sub">By page view</div><div class="lst" id="ctry"></div></div>
+    </div>
+    <div class="panel"><h2>Where visitors came from</h2><div class="sub">Referring sites</div><div class="lst" id="srcs"></div></div>
+    <div class="panel"><h2>Visitors</h2><div class="sub">Each visitor is an anonymous ID, so you can see how many times the same person came back</div><div class="tw" id="vtab"></div><div class="note" id="vnote"></div></div>
+    <div class="panel"><h2>Latest visits</h2><div class="sub">Most recent page views</div><div class="tw" id="rtab"></div></div>
+    <div class="meta" id="smeta"></div>
+  </section>
+</main>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+const $=s=>document.querySelector(s);
+const $$=s=>[...document.querySelectorAll(s)];
+const el=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e};
+const POLL=15000;
+const SEC={home:'Home',about:'About',skills:'Skills',projects:'Projects',education:'Education',contact:'Contact'};
+const CLK={linkedin:'LinkedIn','github':'GitHub',gmail:'Gmail','flappy-details':'Flappy Bird: View more','flappy-repo':'Flappy Bird: GitHub repo','send-message':'Contact form sent'};
+let view='msgs',filter='all',days=7,known=null,fresh=new Set(),data={messages:[],total:0,unread:0},timer=null,toastT,cfg=null,gLoaded=false;
+let regions=null;try{regions=new Intl.DisplayNames(['en'],{type:'region'})}catch(e){}
+
+async function api(url,opt){
+  const r=await fetch(url,Object.assign({credentials:'same-origin',headers:{'Content-Type':'application/json'}},opt));
+  let d={};try{d=await r.json()}catch(e){}
+  if(r.status===401&&!/\/(login|google)$/.test(url)){showLogin();throw new Error('auth')}
+  if(!r.ok)throw new Error(d.error||'Something went wrong.');
+  return d}
+function toast(t){const n=$('#toast');n.textContent=t;n.classList.add('on');clearTimeout(toastT);toastT=setTimeout(()=>n.classList.remove('on'),3800)}
+const cname=c=>!c||c==='Unknown'?'Unknown':(regions?(regions.of(c)||c):c);
+const cap=s=>s?s[0].toUpperCase()+s.slice(1):'Unknown';
+function ago(iso){const s=Math.max(0,(Date.now()-new Date(iso))/1000);
+  if(s<60)return 'just now';if(s<3600)return Math.floor(s/60)+' min ago';if(s<86400)return Math.floor(s/3600)+' h ago';return Math.floor(s/86400)+' d ago'}
+const when=iso=>new Date(iso).toLocaleString(undefined,{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'});
+
+/* ---------- login ---------- */
+async function showLogin(){
+  clearInterval(timer);timer=null;known=null;$('#app').hidden=true;$('#login').hidden=false;document.title='Admin · NIKISH M';
+  try{if(!cfg)cfg=await api('/api/admin/config')}catch(e){cfg={google:null,password:true}}
+  $('#lf').hidden=!cfg.password;$('#gwrap').hidden=!cfg.google;$('#or').hidden=!(cfg.google&&cfg.password);
+  if(cfg.google)loadGoogle();
+  if(cfg.password)$('#pw').focus()}
+function loadGoogle(){
+  if(gLoaded){return}gLoaded=true;
+  const s=document.createElement('script');s.src='https://accounts.google.com/gsi/client';s.async=true;
+  s.onload=()=>{google.accounts.id.initialize({client_id:cfg.google,callback:r=>login('/api/admin/google',{credential:r.credential})});
+    google.accounts.id.renderButton($('#gbtn'),{theme:'filled_black',size:'large',shape:'pill',text:'signin_with',width:320})};
+  s.onerror=()=>{$('#lerr').textContent='Could not load Google sign-in.'};
+  document.head.appendChild(s)}
+async function login(url,body){
+  const b=$('#lbtn'),err=$('#lerr');b.disabled=true;err.textContent='';
+  try{await api(url,{method:'POST',body:JSON.stringify(body)});$('#pw').value='';showApp()}
+  catch(x){err.textContent=x.message}
+  b.disabled=false}
+$('#lf').addEventListener('submit',e=>{e.preventDefault();login('/api/admin/login',{password:$('#pw').value})});
+
+function showApp(){
+  try{localStorage.setItem('noTrack','1')}catch(e){} // don't count your own visits
+  $('#login').hidden=true;$('#app').hidden=false;load();if(view==='stats')loadStats();
+  clearInterval(timer);timer=setInterval(()=>{if(!document.hidden){load();if(view==='stats')loadStats()}},POLL)}
+
+/* ---------- messages ---------- */
+function render(){
+  const pill=$('#pill'),n=data.unread;
+  pill.textContent=n;pill.classList.toggle('zero',!n);
+  document.title=(n?'('+n+') ':'')+'Admin · NIKISH M';
+  const list=$('#list');list.textContent='';
+  const items=data.messages.filter(m=>filter==='all'||!m.is_read);
+  if(!items.length)list.appendChild(el('div','empty',filter==='unread'?'No unread messages. You are all caught up.':'No messages yet. They will appear here when someone uses your contact form.'));
+  items.forEach(m=>{
+    const c=el('article','msg'+(m.is_read?'':' unread')+(fresh.has(m.id)?' fresh':''));
+    const h=el('div','mh'),who=el('div'),t=el('time',null,ago(m.created_at));
+    t.dateTime=m.created_at;t.title=new Date(m.created_at).toLocaleString();
+    who.appendChild(el('b',null,m.name));who.appendChild(document.createElement('br'));
+    const a=el('a','em',m.email);a.href='mailto:'+m.email+'?subject='+encodeURIComponent('Re: your message on my portfolio');who.appendChild(a);
+    h.appendChild(who);h.appendChild(t);c.appendChild(h);
+    c.appendChild(el('p','mb',m.message));
+    const x=el('div','mx');
+    const rep=el('a','btn sm','Reply');rep.href=a.href;
+    const tog=el('button','btn ghost sm',m.is_read?'Mark unread':'Mark read');tog.type='button';
+    tog.onclick=()=>act(()=>api('/api/admin/messages/'+m.id,{method:'PATCH',body:JSON.stringify({read:!m.is_read})}));
+    const del=el('button','btn ghost danger sm','Delete');del.type='button';
+    del.onclick=()=>{if(confirm('Delete this message permanently?'))act(()=>api('/api/admin/messages/'+m.id,{method:'DELETE'}))};
+    x.append(rep,tog,del);c.appendChild(x);list.appendChild(c)});
+  $('#meta').textContent=data.total+' total · '+data.unread+' unread · updated '+new Date().toLocaleTimeString()+' · auto-refreshes every '+POLL/1000+'s';
+}
+async function load(){
+  try{
+    const d=await api('/api/admin/messages');
+    const newOnes=known?d.messages.filter(m=>!known.has(m.id)&&!m.is_read):[];
+    known=new Set(d.messages.map(m=>m.id));
+    fresh=new Set(newOnes.map(m=>m.id));data=d;render();
+    if(newOnes.length)alertNew(newOnes);
+  }catch(e){if(e.message!=='auth')$('#meta').textContent=e.message}
+}
+async function act(fn){try{await fn();await load()}catch(e){if(e.message!=='auth')toast(e.message)}}
+function alertNew(list){
+  const m=list[0],txt=list.length>1?list.length+' new messages':'New message from '+m.name;
+  toast(txt);
+  if('Notification' in window&&Notification.permission==='granted'&&document.hidden){
+    try{new Notification(txt,{body:list.length>1?'Open your admin portal to read them.':m.message.slice(0,120)})}catch(e){}}
+}
+
+/* ---------- analytics ---------- */
+function list(id,rows,fmt){const box=$(id);box.textContent='';
+  if(!rows.length){box.appendChild(el('div',null,'')).appendChild(el('span',null,'No data yet'));return}
+  rows.forEach(r=>{const d=el('div');d.appendChild(el('span',null,fmt?fmt(r.name):r.name));d.appendChild(el('span',null,String(r.count)));box.appendChild(d)})}
+function table(box,heads,rows){box.textContent='';
+  if(!rows.length){box.appendChild(el('div','empty','No visits in this period yet.'));return}
+  const t=document.createElement('table'),hr=document.createElement('tr');
+  heads.forEach(h=>hr.appendChild(el('th',null,h)));t.appendChild(hr);
+  rows.forEach(r=>{const tr=document.createElement('tr');r.forEach(c=>{const td=document.createElement('td');
+    if(c&&c.nodeType)td.appendChild(c);else if(c&&c.cls){td.className=c.cls;td.textContent=c.t}else td.textContent=c;tr.appendChild(td)});t.appendChild(tr)});
+  box.appendChild(t)}
+function tags(list,cls){const w=document.createElement('div');
+  if(!list.length){w.textContent='–';return w}
+  list.forEach(x=>w.appendChild(el('span','tag'+(cls?' '+cls:''),(cls?CLK[x]:SEC[x])||x)));return w}
+
+async function loadStats(){
+  try{
+    const d=await api('/api/admin/analytics?days='+days);
+    const T=d.totals,cards=$('#cards');cards.textContent='';
+    [['Page views',T.pageViews],['Unique visitors',T.uniqueVisitors],['Returning visitors',T.returningVisitors],['Views today',T.todayViews]].forEach(c=>{
+      const s=el('div','stat');s.appendChild(el('small',null,c[0]));s.appendChild(el('b',null,String(c[1])));cards.appendChild(s)});
+    // daily chart
+    const ch=$('#chart');ch.textContent='';const max=Math.max(1,...d.series.map(x=>x.views));
+    d.series.forEach(x=>{const b=document.createElement('i');b.style.height=(x.views?Math.max(4,x.views/max*100):0)+'%';if(!x.views)b.className='z';
+      b.title=x.day+': '+x.views+' view'+(x.views===1?'':'s')+', '+x.visitors+' visitor'+(x.visitors===1?'':'s');ch.appendChild(b)});
+    const ax=$('#axis');ax.textContent='';
+    if(d.series.length){ax.appendChild(el('span',null,d.series[0].day));ax.appendChild(el('span',null,'peak '+max));ax.appendChild(el('span',null,d.series[d.series.length-1].day))}
+    // sections
+    const sb=$('#secs');sb.textContent='';const base=Math.max(1,T.uniqueVisitors);
+    d.sections.forEach(s=>{const r=el('div','row');r.appendChild(el('span',null,SEC[s.section]||s.section));
+      const bar=el('div','bar'),i=document.createElement('i');i.style.width=Math.min(100,s.visitors/base*100)+'%';bar.appendChild(i);r.appendChild(bar);
+      r.appendChild(el('span','n',s.visitors+' visitor'+(s.visitors===1?'':'s')+' · '+s.hits+' view'+(s.hits===1?'':'s')));sb.appendChild(r)});
+    list('#clicks',d.clicks,n=>CLK[n]||n);list('#devs',d.devices,cap);list('#ctry',d.countries,cname);list('#srcs',d.sources);
+    table($('#vtab'),['Visitor','Times viewed','Sections seen','Clicked','Device · country','Last visit'],
+      d.visitors.map(v=>[{cls:'id',t:'#'+v.id},String(v.views),tags(v.sections),tags(v.clicks,'c'),cap(v.device)+' · '+cname(v.country),when(v.last)]));
+    $('#vnote').textContent=d.visitors.length>=25?'Showing the 25 most active visitors.':'';
+    table($('#rtab'),['When','Visitor','Device · country','Came from'],d.recent.map(r=>[when(r.at),{cls:'id',t:'#'+r.id},cap(r.device)+' · '+cname(r.country),r.source]));
+    $('#smeta').textContent='updated '+new Date().toLocaleTimeString()+' · visitors are anonymous (no names, no IP addresses) · your own visits are not counted'+(d.truncated?' · showing the latest 50,000 events':'');
+  }catch(e){if(e.message!=='auth')$('#smeta').textContent=e.message}
+}
+
+/* ---------- events ---------- */
+$('#logout').onclick=async()=>{try{await api('/api/admin/logout',{method:'POST'})}catch(e){}showLogin()};
+$('#refresh').onclick=()=>{load();if(view==='stats')loadStats();toast('Refreshed')};
+$('#readall').onclick=()=>act(()=>api('/api/admin/messages/read-all',{method:'POST'}));
+$$('#ftabs button').forEach(b=>b.onclick=()=>{filter=b.dataset.f;$$('#ftabs button').forEach(x=>x.classList.toggle('on',x===b));render()});
+$$('#nav button').forEach(b=>b.onclick=()=>{view=b.dataset.v;$$('#nav button').forEach(x=>x.classList.toggle('on',x===b));
+  $('#vMsgs').hidden=view!=='msgs';$('#vStats').hidden=view!=='stats';$('#readall').hidden=view!=='msgs';if(view==='stats')loadStats()});
+$$('#range button').forEach(b=>b.onclick=()=>{days=Number(b.dataset.d);$$('#range button').forEach(x=>x.classList.toggle('on',x===b));loadStats()});
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&timer){load();if(view==='stats')loadStats()}});
+
+const ab=$('#alerts');
+if(!('Notification' in window)||Notification.permission==='granted'||Notification.permission==='denied')ab.hidden=true;
+ab.onclick=async()=>{try{const p=await Notification.requestPermission();ab.hidden=true;toast(p==='granted'?'Desktop alerts on.':'Alerts blocked in the browser.')}catch(e){}};
+
+/* start: already logged in? */
+api('/api/admin/session').then(showApp).catch(()=>{if($('#app').hidden)showLogin()});
+})();
+</script>
+</body>
+</html>
